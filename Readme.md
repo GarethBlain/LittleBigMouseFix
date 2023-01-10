@@ -20,5 +20,10 @@ stop, wait a second and restart LBM's service. This shouldn't need to be done ma
 
 This script can (and should) be compiled into an exe using [AutoHotKey](https://www.autohotkey.com/).
 
-Once compiled into an application you can add a shortcut to the app into your Windows Startup folder so it
-runs every time windows starts.
+This can easily be done (once AHK is installed) by running the `Compile.ps1` script which will output a
+`LittleBigMouseFix` folder that you copy to `Program Files` (or anywhere you want).
+
+Running the `LittleBigMouseFix.exe` in that folder will start the application.
+
+Once compiled into an application and copied to it's final location you can add a shortcut to the app into
+your Windows Startup folder so it runs every time windows starts.
