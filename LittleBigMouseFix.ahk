@@ -33,7 +33,7 @@ RestartDaemon() {
   Run, "C:\Program Files\LittleBigMouse\LittleBigMouse_Daemon.exe" --stop
 
   ; Wait for a bit
-  Sleep, 100
+  Sleep, 1000
 
   ; Restart LBM
   Run, "C:\Program Files\LittleBigMouse\LittleBigMouse_Daemon.exe" --start
