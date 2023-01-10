@@ -3,6 +3,15 @@
 
 global TrayLabel := "Little Big Mouse - Unplug Fix"
 
+; Check that the icons exist
+if (!FileExist(A_ScriptDir . "\LBMFix.ico")) {
+  ; 262160 = 16 Icon Hand (stop/error) & 262144 Always on top
+  Msgbox, 262160, %MsgBoxHeader%, Error:  Icon missing!
+}
+
+; Set the tray icon image
+Menu, Tray, Icon, %A_ScriptDir%\LBMFix.ico
+
 ; Set the tray icon label
 Menu, Tray, Tip, %TrayLabel%
 
