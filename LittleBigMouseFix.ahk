@@ -1,6 +1,25 @@
-; Info about this message # here: https://www.autohotkey.com/docs/misc/SendMessageList.htm
-OnMessage(0x007E, "monitorChange")
-monitorChange() {
+#Persistent
+#SingleInstance, force
+
+global TrayLabel := "Little Big Mouse - Unplug Fix"
+
+; Set the tray icon label
+Menu, Tray, Tip, %TrayLabel%
+
+; Remove default tray menu entries
+Menu, Tray, NoStandard
+; Add a new tray menu entry
+Menu, Tray, Add, Restart LittleBigMouse, RestartDaemon
+; Make this the default entry (double clicking triggers it)
+Menu, Tray, Default, Restart LittleBigMouse
+; Add another tray menu entry
+Menu, Tray, Add, Exit, Exit
+
+; Catch any monitor changes and run the RestartDaemon code
+OnMessage(0x007E, "RestartDaemon")
+
+; This simply restarts the Little Big Mouse deamon to force it to look at the monitors...
+RestartDaemon() {
   ; Stop LBM
   Run, "C:\Program Files\LittleBigMouse\LittleBigMouse_Daemon.exe" --stop
 
@@ -11,21 +30,6 @@ monitorChange() {
   Run, "C:\Program Files\LittleBigMouse\LittleBigMouse_Daemon.exe" --start
 }
 
-
-;   Msgbox, 262160, %MsgBoxHeader%, Monitor Changed!
-;   SysGet, newMonitorCount, MonitorCount
-;   if(newMonitorCount > 1) {
-;     ; Trying to be specific to my home office monitor.
-;     ; If specificity is not desired, remove the following SysGet and extract the Run statement from the if block.
-;     ; SysGet name, MonitorName
-;     ; if("\.\DISPLAY2" = name) {
-;       Run, LittleBigMouse_Control.exe, C:\Program Files\LittleBigMouse
-;     ; }
-;     Msgbox, 262160, %MsgBoxHeader%, Trying to open LBM
-;   }
-;   if(1 = newMonitorCount) {
-;     ; Tried a dozen ways to kill it and finally found this one that works
-;     Run wmic process where name='LittleBigMouse_Daemon.exe' delete
-;     Msgbox, 262160, %MsgBoxHeader%, Only one monitor... Tried to kill LBM!
-;   }
-; }
+Exit() {
+  ExitApp
+}
