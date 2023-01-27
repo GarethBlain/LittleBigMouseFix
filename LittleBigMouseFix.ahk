@@ -5,6 +5,10 @@ SendMode Input ; Recommended for new scripts due to its superior speed and relia
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
+; ---------------------------------
+; Version 1.1.0
+; ---------------------------------
+
 TrayLabel := "Little Big Mouse - Unplug Fix"
 Global SettingFilePath := "Settings.ini"
 
